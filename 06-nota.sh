@@ -1,0 +1,38 @@
+#! /bin/bash
+# @JennerSarmiento ISO-M01
+# Febrer 2021
+# Descripció: Posar aprobat, suspès notable i excel·lent
+#
+# -------------------
+ERR_NARGS=1
+ERR_VALOR=2
+if [ $# -ne 1 ]
+then
+  echo "Error: #Arguments incorrectes"
+  echo "Usage: $0 nota"
+  exit $ERR_NARGS
+fi
+
+#validar nota pren un valor [0,10]
+nota=$1
+if ! [ $nota -ge 0 -a $nota -le 10 ]
+then
+  echo "Error:nota no vàlida"
+  echo "nota pren valors [0,10]"
+  exit $ERR_VALOR
+fi
+
+if [ $nota -lt 5 ]
+then
+    echo "Suspes"
+elif [ $nota -lt 7 ]
+then
+    echo "Aprovat"
+elif [ $nota -lt 9 ]
+then
+    echo "Notable"
+else
+    echo "Excelent"
+fi
+
+exit 0
