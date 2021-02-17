@@ -6,6 +6,8 @@
 # -------------------
 ERR_NARGS=1
 ERR_VALOR=2
+
+# 1) Validar arguments
 if [ $# -ne 1 ]
 then
   echo "Error: #Arguments incorrectes"

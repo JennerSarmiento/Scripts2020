@@ -1,8 +1,10 @@
 #! /bin/bash
-# @JennerSarmiento ISO-M01
+# @Jenner Sarmiento ASIX2021 Scripts 2021
 # Febrer 2021
-# llistar directori si existeix
-#---------------------------------------
+# llistar el directori si existeix
+#   $ prog dir
+#   $ prog -h
+# -----------------------
 ERR_NARGS=1
 ERR_VALOR=2
 
@@ -13,7 +15,16 @@ then
   echo "Usage: $0 dir"
   exit $ERR_NARGS
 fi
-# Validar existeix el directori
+
+# 2) Validar el help
+if [ $1 = "-h" ]
+then
+   echo "Help de la ordre 07-dirrectori"
+   echo "@ edt asix m01 curs 2021"
+   exit 0
+fi
+
+# 3) Validar existeix el directori
 mydir=$1
 if  [ ! -d $mydir ]
 then
@@ -22,7 +33,7 @@ then
   exit $ERR_NODIR
 fi
 
-# xixa
+# Programa
 ls $mydir
 exit 0
 
