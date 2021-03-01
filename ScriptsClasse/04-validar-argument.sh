@@ -1,9 +1,9 @@
 #! /bin/bash
-# @Jenner Sarmiento ISO-M01
+# @edt ASIX M01-ISO
 # Febrer 2021
 # Validar existeixen 2 args
-# $ prog arg1 arg2
-# -------------------------
+#   $ prog arg1 arg2
+# -----------------------
 # 1) Validem arguments
 if [ $# -ne 2 ]
 then
@@ -14,6 +14,4 @@ fi
 
 # 2) Xixa
 echo "Els arguments són: $1, $2"
-
-
-
+exit 0

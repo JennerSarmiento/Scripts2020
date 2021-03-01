@@ -1,5 +1,5 @@
 #! /bin/bash
-# @JennerSarmiento ASIX2020-2021 Scripts2020
+# @edt ASIX 2020 - 2021
 # Exemples case
 # -----------------------
 # dl dt dc dj dv ds dm

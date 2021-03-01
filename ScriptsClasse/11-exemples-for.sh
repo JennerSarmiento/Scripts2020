@@ -1,14 +1,17 @@
 #! /bin/bash
-# @JennerSarmiento ASIX M01 Script2020
+# @edt ASIX-M01 Curs 2020-2021
 # febrer 2020
-#Descripció:
-#for var in llista-de-valors
-#do
-#	accions
+# Descripcio: exemples bucle for
+# ---------------------------------
+
+# for var in llista-de-valors
+# do
+#    accions
 # done
+# $* $@ es diferencien que "$@" s'expandeix igualment
 
 # 6) llistar numerats tots els logins
-llista_noms=$(cut -d: -f1 /etc/passwd)
+llista_noms=$( cut -d: -f1 /etc/passwd )
 num=1
 for elem in $llista_noms
 do
@@ -17,7 +20,8 @@ do
 done
 exit 0
 
-# 5) llistat de noms del directori actiu numerat línia per línia
+
+# 5) llistat de noms del directori actiu numerat línia a línia
 llista_noms=$(ls)
 num=1
 for elem in $llista_noms
@@ -26,6 +30,7 @@ do
   ((num++))
 done
 exit 0
+
 
 # 4) llistar els arguments numerats
 num=1
@@ -36,19 +41,30 @@ do
 done
 exit 0
 
+
 # 3) iterar per la llista de noms de fitxers que genera ls
 llista_noms=$(ls)
 for elem in $llista_noms
 do
-  echo $elem 
+  echo $elem
 done
-exit 0
-# 2) iterar per cada argument rebut
-for arg in $@
+
+
+# 2b) iterar per cada argument rebut
+for arg in "$@"
 do
   echo $arg
 done
 exit 0
+
+
+# 2a) iterar per cada argument rebut
+for arg in $*
+do
+  echo $arg
+done
+exit 0
+
 
 # 1b) Iterar una llista de noms
 for nom in "pere marta anna ramón"
@@ -57,7 +73,8 @@ do
 done
 exit 0
 
-# 1) Iterar una llista de noms
+
+# 1a) Iterar una llista de noms
 for nom in "pere" "marta" "anna" "ramón"
 do
   echo $nom

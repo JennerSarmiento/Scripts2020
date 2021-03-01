@@ -1,5 +1,5 @@
 #! /bin/bash
-# @JennerSarmiento ASIX2021 SCRIPTS2020-2021
+# @albert Pujadas ASIX-M01 Curs 2020-2021
 #
 # indicar si és o no un directori fitxer o link
 # -------------------------------
@@ -27,5 +27,4 @@ else
   echo "$fit es una altre cosa"
 fi
 exit 0
-
 

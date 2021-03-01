@@ -1,5 +1,5 @@
 #! /bin/bash
-# @Jenner Sarmiento ASIX2021 Scripts 2021
+# @edt ASIX M01-ISO
 # Febrer 2021
 # llistar el directori si existeix
 #   $ prog dir
@@ -16,7 +16,7 @@ then
   exit $ERR_NARGS
 fi
 
-# 2) Validar el help
+#  validar i help
 if [ $1 = "-h" ]
 then
    echo "Help de la ordre 07-dirrectori"
@@ -24,7 +24,7 @@ then
    exit 0
 fi
 
-# 3) Validar existeix el directori
+# Validar existeix el directori
 mydir=$1
 if  [ ! -d $mydir ]
 then
@@ -33,7 +33,10 @@ then
   exit $ERR_NODIR
 fi
 
-# Programa
+# xixa
 ls $mydir
 exit 0
+
+
+
 
