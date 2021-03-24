@@ -5,31 +5,44 @@
 #Validar existeix user
 #mostrar camp per camp
 
-ERROR_NARGS=1
-ERROR_USER=2
-#1 Validar argumentos
-
-if [ $# -ne 1 ]
+function showuser(){
+if [ $# -eq 0 ]
 then
-  echo "Error:Numero de arguments erroni"
-  echo "USAGE:program.sh arg1"
-  exit $ERROR_NARGS
+	echo "Numero de argumentos no valido"
+	return 1
 fi
-
-#2 Validar l'existencia de user
 user=$1
-
-grep "^$user:" /etc/passwd &> /dev/null
+linea=$(echo $user| grep "^$user:" /etc/passwd)
 if [ $? -eq 0 ]
-then
-  echo $user
+then 
+    login=$(echo $linea | cut -d: -f1)
+    echo "login: $login"
+    echo "password: x"
+    uid=$(echo $linea | cut -d: -f3)
+    echo "uid: $uid"
+    gid=$(echo $linea | cut -d: -f4)
+    echo "gid: $gid"
+    gecos=$(echo $linea |cut -d: -f5)
+    echo "gecos: $gecos"
+    homedir=$(echo $linea | cut -d: -f6)
+    echo "homedir: $homedir"
+    bash=$(echo $linea | cut -d: -f7)
+    echo "bash: $bash"
 else
-  echo "ERROR: El usuario $user no existeix al sistema"
-  exit $ERROR_USER
+       echo "ERROR el usuario $1 no existe"
+       return 0       
 fi
-exit 0
-#3 Mostrar camp per camp
+return 0
+}
 
-function_user(){
- 
-} 
+
+
+
+function suma(){
+	echo "La suma es:"$(($1+$2))
+	return 0
+}
+function dia(){
+	echo date
+	return 0
+}
