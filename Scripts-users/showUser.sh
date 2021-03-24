@@ -2,32 +2,38 @@
 # @JennerSarmiento ISX 46994723
 # Ejemplos de funciones
 #-----------------------------------------------
-
-function showuser(){
-if [ $# -eq 0 ]
-then
-	echo "Numero de argumentos no valido"
-	return 1
-fi
-user=$1
-linea=$(echo $user| grep "^$user:" /etc/passwd)
-if [ $? -eq 0 ]
-then 
-    login=$(echo $linea | cut -d: -f1)
-    echo "LOGIN--> $login"
-    uid=$(echo $linea | cut -d: -f3)
-    echo "UID--> $uid"
-    gid=$(echo $linea | cut -d: -f4)
-    echo "GID--> $gid"
-    gecos=$(echo $linea |cut -d: -f5)
-    echo "GECOS--> $gecos"
-    homedir=$(echo $linea | cut -d: -f6)
-    echo "HOME_DIR--> $homedir"
-    bash=$(echo $linea | cut -d: -f7)
-    echo "BASH--> $bash"
-else
-       echo "ERROR el usuario $1 no existe"
-       return 0       
-fi
-return 0
+# showUser(login)
+# mostrar un a un els camps amb label
+# --------------------------------------
+function showUser(){
+ ERR_NARGS=1
+ ERR_NOLOGIN=2
+ OK=0
+ #1) validar arg
+ if [ $# -ne 1 ]; then
+   echo "Error: num args incorrecte"
+   echo "usage: $0 login"
+   return $ERR_NARGS
+ fi
+ #2) validar existeix login
+ login=$1
+ line=""
+ line=$(grep "^$login:" /etc/passwd 2> /dev/null)
+ if [ -z "$line" ]; then
+   echo "Error: login $login inexist"
+   echo "usage: $0 login"
+   return $ERR_NOLOGIN
+ fi
+ #3) mostrar
+ uid=$(echo $line | cut -d: -f3)
+ gid=$(echo $line | cut -d: -f4)
+ gecos=$(echo $line | cut -d: -f5)
+ home=$(echo $line | cut -d: -f6)
+ shell=$(echo $line | cut -d: -f7)
+ echo "login: $login"
+ echo "uid: $uid"
+ echo "gid: $gid"
+ echo "home: $home"
+ echo "shell: $shell"
+ return 0
 }
