@@ -1,9 +1,7 @@
 #! /bin/bash
-# Exemples de funcions
-
-#Validar si rep un argument
-#Validar existeix user
-#mostrar camp per camp
+# @JennerSarmiento ISX 46994723
+# Ejemplos de funciones
+#-----------------------------------------------
 
 function showuser(){
 if [ $# -eq 0 ]
@@ -16,33 +14,20 @@ linea=$(echo $user| grep "^$user:" /etc/passwd)
 if [ $? -eq 0 ]
 then 
     login=$(echo $linea | cut -d: -f1)
-    echo "login: $login"
-    echo "password: x"
+    echo "LOGIN--> $login"
     uid=$(echo $linea | cut -d: -f3)
-    echo "uid: $uid"
+    echo "UID--> $uid"
     gid=$(echo $linea | cut -d: -f4)
-    echo "gid: $gid"
+    echo "GID--> $gid"
     gecos=$(echo $linea |cut -d: -f5)
-    echo "gecos: $gecos"
+    echo "GECOS--> $gecos"
     homedir=$(echo $linea | cut -d: -f6)
-    echo "homedir: $homedir"
+    echo "HOME_DIR--> $homedir"
     bash=$(echo $linea | cut -d: -f7)
-    echo "bash: $bash"
+    echo "BASH--> $bash"
 else
        echo "ERROR el usuario $1 no existe"
        return 0       
 fi
 return 0
-}
-
-
-
-
-function suma(){
-	echo "La suma es:"$(($1+$2))
-	return 0
-}
-function dia(){
-	echo date
-	return 0
 }
