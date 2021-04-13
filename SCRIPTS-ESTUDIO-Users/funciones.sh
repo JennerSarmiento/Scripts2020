@@ -2,6 +2,86 @@
 # @JennerSarmiento
 # 11/05/2021
 
+# 23) getsize
+
+function getsize(){
+  homedir=$1
+  if [ -d $homedir ]
+  then
+    du -s -b $homerdir | cut -f1
+    return 0
+  else
+    return 1
+  fi
+
+}
+
+# 22) getHoleList
+
+function getHoleList(){
+  ERROR_NARGS=1
+  STATUS=0
+
+  if [ $# -eq 0 ]
+  then
+    echo "ERROR: Numero de argumentos erroneos. " >> /dev/stderr
+    echo "USAGE: getHoleList login[...]" >> /dev/stderr
+    return $ERROR_NARGS
+  fi
+  for login in $*
+  do
+    getHome $login
+    if [ $? -ne 0 ]
+    then
+       STATUS=$((STATUS+1))
+    fi
+  done
+  return $STATUS
+}
+
+# 21) getHome login
+
+function getHome {
+  login=$1
+  egrep "^$login:" /etc/passwd &> /dev/null
+  if [ $? -eq 0 ]
+  then
+    egrep "^$login:" /etc/passwd | cut -f6 -d:
+    return 0
+  else
+    return 1
+  fi
+}
+
+# 7/8) showGroupMainMembers
+
+function showGroupMainMember(){
+  ERROR_NARGS=1
+  ERROR_GNAME=2
+  OK=0
+  if [ $# -ne 1 ]
+  then
+    echo "Error: Numero d'arguments erroni"
+    echo "Usage: $0 gname"
+    return $ERROR_NARGS
+  fi
+  gname=$1
+  gid=""
+  gid=$(grep "^$gname:" /etc/group | cut -d: -f3)
+  if [ -z "$gid" ]
+  then
+    echo "Error: $gname no existe."
+    echo "Usage= $0 gname"
+    return $ERROR_GNAME
+  else
+    echo "Llista del grup $gname($gid)"
+    grep "^[^:]*:[^:]*:[^:]*:$gid:" /etc/passwd | cut -d: -f1,3,6,7 | sort -k2g,2 | sed 's/:/ /g' | tr '[:lower:]' '[:upper:]' | sed -r 's/^(.*)$/\t\1/g' 
+  fi
+  return $OK
+}
+
+
+
 # 6) showUserIn < fileIn
 function showUserIn(){
 STATUS=0
