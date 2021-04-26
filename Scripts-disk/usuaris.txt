@@ -1,0 +1,6 @@
+root
+pere
+marta
+guest
+joan
+anna

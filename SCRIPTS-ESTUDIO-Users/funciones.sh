@@ -2,7 +2,26 @@
 # @JennerSarmiento
 # 11/05/2021
 
-# 23) getsize
+# 24) getsizeIn login
+
+function getsizeIn(){
+  STATUS=0
+  while read -r login
+  do
+    getHoleList $login &> /dev/null
+    if [ $? -eq 0 ]
+    then
+      homedir=$(getHome $login)
+      getsize $homedir
+    else
+      STATUS=$((STATUS+1))
+    fi
+  done
+  return $STATUS
+
+}
+
+# 23) getsize 
 
 function getsize(){
   homedir=$1
@@ -271,7 +290,7 @@ function showUserGecos(){
   phonehome=$(echo $gecos | cut -d, -f4)
   
   echo "Usuario: $usuario"
-  echo "GECOS:"
+  echo "GECOS: $gecos"
   echo "Name: $name"
   echo "Office: $office"
   echo "PhoneOffice: $phoneoffice"
