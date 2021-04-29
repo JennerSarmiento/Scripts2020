@@ -9,8 +9,8 @@
 #			verificar per cada login rebut que és vàlid.
 #####################################################################
 function loginboth(){
-ERROR_NARGS=1
-file=/dev/stdin
+  ERROR_NARGS=1
+  file=/dev/stdin
   if [ $# -eq 1 ]
   then
     file=$1
@@ -19,9 +19,9 @@ file=/dev/stdin
   do
     login=""
     login=$(grep "^$line:" /etc/passwd | cut -d: -f1)
-    if [ -z $login ]
+    if [ -z "$login" ]
     then
-	    echo "Error; $login no trobat" > /dev/stderr
+      echo "Error; $login no trobat" > /dev/stderr
     fi
     home=$(grep "^$line:" /etc/passwd | cut -d: -f6)
     echo $login| tr '[:lower:]' '[:upper:]'
