@@ -15,4 +15,16 @@ file=/dev/stdin
   then
     file=$1
   fi
+  while read -r line
+  do
+    login=""
+    login=$(grep "^$line:" /etc/passwd | cut -d: -f1)
+    if [ -z $login ]
+    then
+	    echo "Error; $login no trobat" > /dev/stderr
+    fi
+    home=$(grep "^$line:" /etc/passwd | cut -d: -f6)
+    echo $login| tr '[:lower:]' '[:upper:]'
+    du -hs $home
+  done < $file
 }
