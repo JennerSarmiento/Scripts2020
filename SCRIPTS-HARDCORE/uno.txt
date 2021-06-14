@@ -1,0 +1,7 @@
+total 20
+-rw-rw-r--. 1 Jenner Jenner 262 Jun 11 19:32 04-validar_arg.sh
+-rw-rw-r--. 1 Jenner Jenner 706 Jun 11 19:45 05-notas.sh
+-rw-rw-r--. 1 Jenner Jenner 390 Jun 11 19:56 07-dir.sh
+-rw-rw-r--. 1 Jenner Jenner 449 Jun 11 20:11 08-tipofile.sh
+-rw-rw-r--. 1 Jenner Jenner 112 Jun 11 19:30 exemple.sh
+-rw-rw-r--. 1 Jenner Jenner   0 Jun 11 20:11 uno.txt
